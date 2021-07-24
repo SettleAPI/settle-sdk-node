@@ -20,7 +20,7 @@ An easy to use **SDK** for **Node.js** with all the best practices to kickstart 
 ### Coming Soon
 
 - [merchant.balance](https://settle.dev/api/reference/rest/v1/merchant.balance/)
-- [merchant.logo~~](https://settle.dev/api/reference/rest/v1/merchant.logo/)
+- [merchant.logo](https://settle.dev/api/reference/rest/v1/merchant.logo/)
 - [merchant.payment.request](https://settle.dev/api/reference/rest/v1/merchant.payment.request/)
 - [merchant.payment.request.outcome](https://settle.dev/api/reference/rest/v1/merchant.payment.request.outcome/)
 - [merchant.payment.send](https://settle.dev/api/reference/rest/v1/merchant.payment.send/)
