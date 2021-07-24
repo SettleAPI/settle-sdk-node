@@ -13,7 +13,7 @@ An easy to use **SDK** for **Node.js** with all the best practices to kickstart 
 
 ## Functions
 
-### Active Now
+### Available Now
 
 - [merchant.api_keys](https://settle.dev/api/reference/rest/v1/merchant.apiKeys/)
   
