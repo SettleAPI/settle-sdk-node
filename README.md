@@ -9,7 +9,7 @@ An easy to use **SDK** for **Node.js** with all the best practices to kickstart 
 ## Features
 
 * **Requests** - Simplifies calling the Settle APIs by handling signing and authorization.
-* **Verifications** - _Express.js_ compatible middleware that verifies signatures of incoming callbacks.
+* ~~**Verifications** - _Express.js_ compatible middleware that verifies signatures of incoming callbacks.~~
 
 ## Functions
 
