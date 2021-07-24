@@ -1,7 +1,7 @@
 {
     "name": "settle-sdk-node",
     "version": "0.1.1-0",
-    "description": "NOT PRODUCTION READY! SDK for connecting to the Settle Payment Platform.",
+    "description": "An easy to use SDK for Node.js with all the best practices to kickstart your integration with the Settle Payment Platform.",
     "main": "./src/index.js",
     "scripts": {
         "clean": "rimraf lib",
