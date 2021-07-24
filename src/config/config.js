@@ -1,7 +1,4 @@
-let config;
-config = config || {};
-
-config = {
+module.exports = {
   environment: 'sandbox',
   user: 't1m7fw50',
   merchantId: 'fzkmhy0q',
@@ -12,5 +9,3 @@ config = {
     }
   }
 };
-
-module.exports = config;
