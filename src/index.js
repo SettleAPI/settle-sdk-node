@@ -109,7 +109,6 @@ settle.merchant = {
   }
 };
 
-exports.merchant = settle.merchant;
 
 // Available parameters: https://settle.dev/api/reference/rest/v1/merchant.apiKeys/list/
 // merchant.api_keys.list().then(success, failure)
