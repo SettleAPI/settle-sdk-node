@@ -14,7 +14,13 @@
         "lint": "eslint src test",
         "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
         "prepublish": "npm run clean && npm run lint && npm run test && npm run build",
-        "publish:prerelease": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version prerelease && npm publish"
+        "publish:prerelease": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version prerelease && npm publish",
+        "publish:prepatch": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version prepatch && npm publish",
+        "publish:preminor": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version preminor && npm publish",
+        "publish:premajor": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version premajor && npm publish",
+        "publish:patch": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version patch && npm publish",
+        "publish:minor": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version minor && npm publish",
+        "publish:major": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version major && npm publish"
     },
     "files": [
         "lib",
