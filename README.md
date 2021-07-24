@@ -1,6 +1,6 @@
 # Settle SDK for Node.js
 
-[![Build Status](https://travis-ci.org/flexdinesh/npm-module-boilerplate.svg?branch=master)](https://travis-ci.org/flexdinesh/npm-module-boilerplate) [![dependencies Status](https://david-dm.org/flexdinesh/npm-module-boilerplate/status.svg)](https://david-dm.org/flexdinesh/npm-module-boilerplate) [![devDependencies Status](https://david-dm.org/flexdinesh/npm-module-boilerplate/dev-status.svg)](https://david-dm.org/flexdinesh/npm-module-boilerplate?type=dev) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/SettleAPI/settle-sdk-node.svg?branch=master)](https://travis-ci.org/SettleAPI/settle-sdk-node) [![dependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node) [![devDependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/dev-status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node?type=dev) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 **Start accepting payments via Settle in seconds** ✨
 
