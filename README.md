@@ -4,7 +4,7 @@
 
 **Start accepting payments via Settle in seconds** ✨
 
-An easy to use SDK for Node.js with all the best practices to kickstart your integration with Settle.
+An easy to use SDK for Node.js with all the best practices to kickstart your integration with the Settle Payment Platform.
 
 ## Features
 
