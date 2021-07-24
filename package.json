@@ -31,9 +31,14 @@
         "url": "git+https://github.com/SettleAPI/settle-sdk-node.git"
     },
     "keywords": [
-        "settle.eu",
-        "settle payment platform",
-        "settle sdk"
+        "Settle",
+        "Settle Group",
+        "Settle.eu",
+        "Payment Platform",
+        "SDK",
+        "Merchant API",
+        "OAuth 2.0 Authorization Framework",
+        "Permissions API"
     ],
     "author": "Christian Wick <christian@settle.eu>",
     "license": "MIT",
