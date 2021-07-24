@@ -28,19 +28,19 @@
     ],
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/flexdinesh/npm-module-boilerplate.git"
+        "url": "git+https://github.com/SettleAPI/settle-sdk-node.git"
     },
     "keywords": [
         "settle.eu",
-        "settle sdk",
-        "settle payment platform"
+        "settle payment platform",
+        "settle sdk"
     ],
     "author": "Christian Wick <christian@settle.eu>",
     "license": "MIT",
     "bugs": {
         "url": "https://github.com/SettleAPI/settle-sdk-node/issues"
     },
-    "homepage": "https://github.com/SettleAPI/settle-sdk-node/npm-module-boilerplate#readme",
+    "homepage": "https://github.com/SettleAPI/settle-sdk-node#readme",
     "devDependencies": {
         "babel-cli": "^6.26.0",
         "babel-eslint": "^10.0.1",
