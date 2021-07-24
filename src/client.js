@@ -4,21 +4,6 @@ const debug = require('debug')('settle');
 const { format } = require('util');
 const lodash = require('lodash');
 const parseUrl = require('url').parse;
-const fs = require('fs');
-
-const userConfigFile = '../../../config.json';
-const demoConfig = require('../src/config/config.json');
-
-try {
-  if (fs.existsSync(userConfigFile)) {
-    exports.CONFIG = require(userConfigFile);
-  } else {
-    exports.CONFIG = demoConfig;
-    debug('using demo config');
-  }
-} catch (err) {
-  console.error(err);
-}
 
 const ACCEPT = 'application/vnd.mcash.api.merchant.v1+json';
 const CONTENT_TYPE = 'application/json';

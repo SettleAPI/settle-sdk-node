@@ -19,11 +19,11 @@ module.exports = exports = function (environment, callbackUri) {
 };
 const keysFile = '../../../keys.json';
 try {
-    if (fs.existsSync(keysFile)) {
-        exports.KEYS = require(keysFile);
-    }
+  if (fs.existsSync(keysFile)) {
+    exports.KEYS = fs.readFileSync(keysFile, 'utf8');
+  }
 } catch (err) {
-    console.error(err);
+  console.error(err);
 }
 // exports.KEYS = require('../../../keys.json');
 
