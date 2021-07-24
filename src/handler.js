@@ -2,12 +2,16 @@ const crypto = require('crypto');
 const fs = require('fs');
 const debug = require('debug')('mcash:handler');
 const { format } = require('util');
+// eslint-disable-next-line no-unused-vars
 const { EventEmitter } = require('events');
 
+// eslint-disable-next-line no-multi-assign,func-names
 module.exports = exports = function (environment, callbackUri) {
+  // eslint-disable-next-line global-require,import/no-unresolved
   return require('body-parser')
     .json({
       type: 'application/vnd.mcash.api.merchant.v1+json',
+      // eslint-disable-next-line no-unused-vars
       verify(req, res, buf, encoding) {
         let err = exports.verifyDigest(req, buf.toString('utf8'));
         if (err) throw new Error(`Digest verification failed: ${err}`);
@@ -23,10 +27,12 @@ try {
     exports.KEYS = fs.readFileSync(keysFile, 'utf8');
   }
 } catch (err) {
+  // eslint-disable-next-line no-console
   console.error(err);
 }
 // exports.KEYS = require('../../../keys.json');
 
+// eslint-disable-next-line consistent-return,func-names
 exports.verifyDigest = function (req, text) {
   const header = req.headers['x-mcash-content-digest'];
   if (!header) return 'header missing';
@@ -50,6 +56,7 @@ exports.verifyDigest = function (req, text) {
   if (actual !== expected) return 'mismatch';
 };
 
+// eslint-disable-next-line consistent-return,func-names
 exports.verifyAuthorization = function (req, key, callbackUri) {
   const header = req.headers.authorization;
   if (!header) return 'header missing';
@@ -64,6 +71,7 @@ exports.verifyAuthorization = function (req, key, callbackUri) {
   const expected = match[2];
 
   if (!callbackUri) {
+    // eslint-disable-next-line no-param-reassign
     callbackUri = format('%s://%s%s', req.protocol, req.headers.host, req.originalUrl);
   }
 
@@ -72,8 +80,10 @@ exports.verifyAuthorization = function (req, key, callbackUri) {
     req.method,
     callbackUri,
     Object.keys(req.headers)
-      .filter(key => !!key.match(/^x-mcash-/))
+    // eslint-disable-next-line no-shadow
+      .filter((key) => !!key.match(/^x-mcash-/))
       .sort()
+    // eslint-disable-next-line no-shadow
       .reduce((p, key) => format('%s%s%s=%s',
         p,
         p.length ? '&' : '',

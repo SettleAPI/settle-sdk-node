@@ -1,4 +1,4 @@
-import { assert } from 'chai';
+// import { assert } from 'chai';
 // import defaultAwesomeFunction, { awesomeFunction } from '../src';
 
 // describe('Awesome test.', () => {

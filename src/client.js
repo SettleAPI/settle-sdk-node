@@ -10,6 +10,7 @@ const CONTENT_TYPE = 'application/json';
 
 superagent.parse[CONTENT_TYPE] = superagent.parse['application/json'];
 
+// eslint-disable-next-line no-multi-assign,func-names
 const Settle = module.exports = exports = function (opts) {
   this.opts = opts;
 };
@@ -25,9 +26,11 @@ function settleTimestamp() {
     .substr(0, 19);
 }
 
+// eslint-disable-next-line func-names
 Settle.prototype.request = function (type, url, opts) {
   const fn = superagent[type.toLowerCase()];
 
+  // eslint-disable-next-line no-param-reassign
   opts = lodash.extend({
     payload: null,
   }, opts);
@@ -54,13 +57,14 @@ Settle.prototype.request = function (type, url, opts) {
       .set('X-Settle-Timestamp', settleTimestamp())
       .set('X-Settle-Content-Digest', `SHA256=${digest}`);
 
+    // eslint-disable-next-line no-unused-vars
     const parsedUrl = parseUrl(request.url);
 
     const concat = format('%s|%s|%s',
       request.method,
       request.url,
       Object.keys(request.req.getHeaders())
-        .filter(key => !!key.match(/^x-settle-/))
+        .filter((key) => !!key.match(/^x-settle-/))
         .sort()
         .reduce((p, key) => format('%s%s%s=%s',
           p,
@@ -91,7 +95,7 @@ Settle.prototype.request = function (type, url, opts) {
   }
 
   debug('all headers, for debugging:\n%s', Object.keys(request.req.getHeaders())
-    .map(key => `\t${key}: ${request.req.getHeaders()[key]}`)
+    .map((key) => `\t${key}: ${request.req.getHeaders()[key]}`)
     .join('\n'));
 
   return request;

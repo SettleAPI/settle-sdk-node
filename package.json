@@ -13,14 +13,14 @@
         "cover": "nyc --check-coverage npm run test:only",
         "lint": "eslint src test",
         "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
-        "prepublish": "npm run clean && npm run lint && npm run test && npm run build",
-        "publish:prerelease": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version prerelease && npm publish",
-        "publish:prepatch": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version prepatch && npm publish",
-        "publish:preminor": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version preminor && npm publish",
-        "publish:premajor": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version premajor && npm publish",
-        "publish:patch": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version patch && npm publish",
-        "publish:minor": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version minor && npm publish",
-        "publish:major": "npm run clean && npm run build && git commit -am 'Bumping npm version' && git push && npm version major && npm publish"
+        "prepublish": "npm run clean && npm run lint && npm run test && npm run build && git add -A ",
+        "publish:prerelease": "npm run clean && npm run lint && npm run test && git commit -am 'Upgrade to %s' && npm version prerelease -m 'Upgrade to %s' && git push && npm publish",
+        "publish:prepatch": "npm run clean && npm run lint && npm run test && git commit -am 'Upgrade to %s' && npm version prepatch -m 'Upgrade to %s' && git push && npm publish",
+        "publish:preminor": "npm run clean && npm run lint && npm run test && git commit -am 'Upgrade to %s' && npm version preminor -m 'Upgrade to %s' && git push && npm publish",
+        "publish:premajor": "npm run clean && npm run lint && npm run test && git commit -am 'Upgrade to %s' && npm version premajor -m 'Upgrade to %s' && git push && npm publish",
+        "publish:patch": "npm run clean && npm run lint && npm run test && git commit -am 'Upgrade to %s' && npm version patch -m 'Upgrade to %s' && git push && npm publish",
+        "publish:minor": "npm run clean && npm run lint && npm run test && git commit -am 'Upgrade to %s' && npm version minor -m 'Upgrade to %s' && git push && npm publish",
+        "publish:major": "npm run clean && npm run lint && npm run test && git commit -am 'Upgrade to %s' && npm version major -m 'Upgrade to %s' && git push && npm publish"
     },
     "files": [
         "lib",
@@ -60,8 +60,9 @@
         "rimraf": "3.0.2"
     },
     "dependencies": {
-        "debug": "2.6.9",
+        "body-parser": "^1.19.0",
+        "debug": "4.3.2",
         "lodash": "4.17.21",
-        "superagent": "3.7.0"
+        "superagent": "0.18.0"
     }
 }
