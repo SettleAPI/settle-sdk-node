@@ -1,6 +1,6 @@
 {
     "name": "settle-sdk-node",
-    "version": "0.1.0-0",
+    "version": "0.1.1-0",
     "description": "NOT PRODUCTION READY! SDK for connecting to the Settle Payment Platform.",
     "main": "./src/index.js",
     "scripts": {
