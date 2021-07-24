@@ -1,6 +1,6 @@
 const SettleRequest = require('./client');
 
-exports.send = new SettleRequest({
+const send = new SettleRequest({
   environment: 'sandbox',
   user: 't1m7fw50',
   merchantId: 'fzkmhy0q',
@@ -19,3 +19,152 @@ exports.send = new SettleRequest({
         + 'guwEj2euvbP4Fi52QJA=\n'
         + '-----END RSA PRIVATE KEY-----'
 });
+
+const request_promise = (method, url, request_body) => {
+  const promise = new Promise((resolve, reject) => {
+    send.request(method, url, { payload: request_body })
+      .end((err, res) => {
+        // (res.ok === true) ? resolve(settle.callback.success) : reject(settle.callback.failure);
+        let response = {};
+        if (res.ok === true) {
+          try {
+            response.status = 'Success';
+            response.status_code = res.res.statusCode;
+            response.status_message = res.res.statusMessage;
+            response.content = res.res.text;
+            // response.content = res.text;
+            // console.log(res)
+
+            resolve(response);
+            response = {};
+          } catch (err) {
+            console.error(err);
+          }
+        } else if (res.ok !== true) {
+          try {
+            response.status = 'Failure';
+            response.status_code = res.statusCode;
+            if (res.clientError) response.type = 'clientError';
+            if (res.serverError) response.type = 'serverError';
+            if (err) response.errorDetails.message = err;
+            if (res.res.statusMessage) response.statusMessage = res.res.statusMessage;
+
+            response.errorDetails = {
+              type: response.type,
+              description: res.text,
+              status: res.error.status,
+              method: res.error.method,
+              path: res.error.path
+            };
+            // throw new Error("Something is wrong!");// No reject call
+            // console.log(res)
+            reject(response);
+            response = {};
+            return response;
+          } catch (err) {
+            console.error(err);
+          }
+        }
+      });
+  });
+  return promise;
+};
+
+const settle = {};
+settle.merchant = settle.merchant || {};
+exports.settle = settle;
+
+settle.merchant = {
+  payment: {
+    request: {
+      create(content) {
+        return request_promise('POST', 'payment_request/', content)
+          .then(result => result, error => error);
+      },
+      list() {
+        return request_promise('GET', 'payment_request/')
+          .then(result => result, error => error);
+      }
+    }
+  },
+  api_keys: {
+    create(content) {
+      return request_promise('POST', 'api_key/', content)
+        .then(result => result, error => error);
+    },
+    list() {
+      return request_promise('GET', 'api_key/')
+        .then(result => result, error => error);
+    },
+    get(api_key_id, content) {
+      return request_promise('GET', `api_key/${api_key_id}/`, content)
+        .then(result => result, error => error);
+    },
+    update(api_key_id, content) {
+      return request_promise('PUT', `api_key/${api_key_id}/`, content)
+        .then(result => result, error => error);
+    },
+    delete() {
+    },
+  }
+};
+
+exports.merchant = settle.merchant;
+
+// Available parameters: https://settle.dev/api/reference/rest/v1/merchant.apiKeys/list/
+// merchant.api_keys.list().then(success, failure)
+// merchant.api_keys.list()
+//   .then((success) => {
+//     console.log(success);
+//   }, (failure) => {
+//     console.log(failure);
+//   });
+
+// // Available parameters: https://settle.dev/api/reference/rest/v1/merchant.apiKeys/get/
+// merchant.api_keys.get('<api_key_id>')
+//     .then(success => {
+//             console.log(success);
+//         }, failure => {
+//             console.log(failure);
+//         }
+//     );
+
+
+// // Available parameters: https://settle.dev/api/reference/rest/v1/merchant.apiKeys/update/
+// merchant.api_keys.update('<api_key_id>', {"key": "value"})
+//     .then(success => {
+//             console.log(success);
+//         }, failure => {
+//             console.log(failure);
+//         }
+//     );
+
+
+// // Available parameters: https://settle.dev/api/reference/rest/v1/merchant.apiKeys/create/
+// merchant.api_keys.create({"key": "value"})
+//     .then(success => {
+//             console.log(success);
+//         }, failure => {
+//             console.log(failure);
+//         }
+//     );
+
+
+// Available parameters: https://settle.dev/api/reference/rest/v1/merchant.payment.request/create/
+// merchant.payment.request.create({"key": "value"})
+//     .then(success => {
+//             console.log(success);
+//         }, failure => {
+//             console.log(failure);
+//         }
+//     );
+
+
+// // Available parameters: https://settle.dev/api/reference/rest/v1/merchant.payment.request/list/
+// merchant.payment.request.list()
+//     .then(success => {
+//             console.log(success);
+//         }, failure => {
+//             console.log(failure);
+//         }
+//     );
