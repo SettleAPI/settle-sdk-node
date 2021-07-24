@@ -1,37 +1,64 @@
-# NPM Module Boilerplate
+# Settle SDK for Node.js
 
 [![Build Status](https://travis-ci.org/flexdinesh/npm-module-boilerplate.svg?branch=master)](https://travis-ci.org/flexdinesh/npm-module-boilerplate) [![dependencies Status](https://david-dm.org/flexdinesh/npm-module-boilerplate/status.svg)](https://david-dm.org/flexdinesh/npm-module-boilerplate) [![devDependencies Status](https://david-dm.org/flexdinesh/npm-module-boilerplate/dev-status.svg)](https://david-dm.org/flexdinesh/npm-module-boilerplate?type=dev) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-**Start developing your NPM module in seconds** ✨
+**Start accepting payments via Settle in seconds** ✨
 
-Readymade boilerplate setup with all the best practices to kick start your npm/node module development.
+An easy to use SDK for Node.js with all the best practices to kickstart your integration with Settle.
 
-Happy hacking =)
+## Features
 
-# Features
+* **Requests** - Simplifies calling the Settle APIs by handling signing and authorization.
+* **Verifications** - _Express.js_ compatible middleware that verifies signatures of incoming callbacks.
 
-* **ES6/ESNext** - Write _ES6_ code and _Babel_ will transpile it to ES5 for backwards compatibility
-* **Test** - _Mocha_ with _Istanbul_ coverage
-* **Lint** - Preconfigured _ESlint_ with _Airbnb_ config
-* **CI** - _TravisCI_ configuration setup
-* **Minify** - Built code will be minified for performance
+## Functions
 
-# Commands
-- `npm run clean` - Remove `lib/` directory
-- `npm test` - Run tests with linting and coverage results.
-- `npm test:only` - Run tests without linting or coverage.
-- `npm test:watch` - You can even re-run tests on file changes!
-- `npm test:prod` - Run tests with minified code.
-- `npm run test:examples` - Test written examples on pure JS for better understanding module usage.
-- `npm run lint` - Run ESlint with airbnb-config
-- `npm run cover` - Get coverage report for your code.
-- `npm run build` - Babel will transpile ES6 => ES5 and minify the code.
-- `npm run prepublish` - Hook for npm. Do all the checks before publishing your module.
+- `merchant.api_keys` - https://settle.dev/api/reference/rest/v1/merchant.apiKeys/
+- `merchant.balance` - https://settle.dev/api/reference/rest/v1/merchant.balance/
+- `merchant.logo` - https://settle.dev/api/reference/rest/v1/merchant.logo/
+- `merchant.payment.request` - https://settle.dev/api/reference/rest/v1/merchant.payment.request/
+- `merchant.payment.request.outcome` - https://settle.dev/api/reference/rest/v1/merchant.payment.request.outcome/
+- `merchant.payment.send` - https://settle.dev/api/reference/rest/v1/merchant.payment.send/
+- `merchant.payment.send.outcome` - https://settle.dev/api/reference/rest/v1/merchant.payment.send.outcome/
+- `merchant.pos` - https://settle.dev/api/reference/rest/v1/merchant.pos/
+- `merchant.profile` - https://settle.dev/api/reference/rest/v1/merchant.profile/
+- `merchant.sales.summary` - https://settle.dev/api/reference/rest/v1/merchant.sales.summary/
+- `merchant.settlement` - https://settle.dev/api/reference/rest/v1/merchant.settlement/
+- `merchant.settlement.account` - https://settle.dev/api/reference/rest/v1/merchant.settlement.account/
+- `merchant.settlement.latest` - https://settle.dev/api/reference/rest/v1/merchant.settlement.latest/
+- `merchant.settlement.report` - https://settle.dev/api/reference/rest/v1/merchant.settlement.report/
+- `merchant.shortlink` - https://settle.dev/api/reference/rest/v1/merchant.shortlink/
+- `merchant.statusCodes` - https://settle.dev/api/reference/rest/v1/merchant.statusCodes/
 
-# Installation
-Just clone this repo and remove `.git` folder.
+## Installation
 
+`npm i settle-sdk-node`
 
-# License
+## Config
 
-MIT © Dinesh Pandiyan
+TBD
+
+## Usage
+
+```js
+merchant.api_keys.list().then(success, failure)
+```
+
+## Example
+
+```js
+const settle = require('settle-sdk-node');
+const merchant = settle.merchant;
+
+// Available parameters: https://settle.dev/api/reference/rest/v1/merchant.apiKeys/list/
+merchant.api_keys.list()
+  .then((success) => {
+    console.log(success);
+  }, (failure) => {
+    console.log(failure);
+  });
+```
+
+## License
+
+MIT © Christian Wick

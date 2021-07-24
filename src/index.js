@@ -59,7 +59,7 @@ const send = new SettleRequest({
   environment: optEnv,
   user: optUser,
   merchantId: optMerchant,
-  privateKey: optAuthPriv
+  privateKey: optAuthPriv,
 });
 
 const request_promise = (method, url, request_body) => {
@@ -93,7 +93,7 @@ const request_promise = (method, url, request_body) => {
               description: res.text,
               status: res.error.status,
               method: res.error.method,
-              path: res.error.path
+              path: res.error.path,
             };
             reject(response);
             response = {};
@@ -114,7 +114,7 @@ const request_promise = (method, url, request_body) => {
               description: res.text,
               status: res.error.status,
               method: res.error.method,
-              path: res.error.path
+              path: res.error.path,
             };
             reject(response);
           } catch (err) {
@@ -140,8 +140,8 @@ settle.merchant = {
       list() {
         return request_promise('GET', 'payment_request/')
           .then(result => result, error => error);
-      }
-    }
+      },
+    },
   },
   api_keys: {
     create(content) {
@@ -162,7 +162,7 @@ settle.merchant = {
     },
     delete() {
     },
-  }
+  },
 };
 
 exports.merchant = settle.merchant;
