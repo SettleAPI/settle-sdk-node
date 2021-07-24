@@ -3,17 +3,11 @@ const path = require('path');
 const findUp = require('find-up');
 const SettleRequest = require('./client');
 
-const settle = {};
-settle.merchant = settle.merchant || {};
-exports.settle = settle;
-
 let userConfigFile;
 const demoConfig = './config/config.js';
 
-(async () => {
+exports.default = (async () => {
   userConfigFile = await findUp('config.js');
-  console.log(userConfigFile);
-})().then(() => {
   let config;
   let optEnv;
   let optUser;
@@ -25,7 +19,7 @@ const demoConfig = './config/config.js';
     if (fs.existsSync(userConfigFile)) {
       const configFile = require(userConfigFile);
       config = configFile;
-      console.debug('using user config');
+      console.info(`Hooray! You\'re using the config.js file from your project root; ${userConfigFile}`);
       optEnv = config.environment;
       optUser = config.user;
       optMerchant = config.merchantId;
@@ -107,6 +101,10 @@ const demoConfig = './config/config.js';
     return promise;
   };
 
+  const settle = {};
+  settle.merchant = settle.merchant || {};
+  exports.settle = settle;
+
   settle.merchant = {
     payment: {
       request: {
@@ -141,6 +139,8 @@ const demoConfig = './config/config.js';
       },
     }
   };
-});
+  const merchant = settle.merchant;
+})();
 
-exports.merchant = settle.merchant;
+
+// exports.merchant = settle.merchant;
