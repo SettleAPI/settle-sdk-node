@@ -1,6 +1,6 @@
 # Settle SDK for Node.js
 
-[![Build Status](https://travis-ci.org/SettleAPI/settle-sdk-node.svg?branch=master)](https://travis-ci.com/SettleAPI/settle-sdk-node) [![dependencies Status](https://david-dm.com/SettleAPI/settle-sdk-node/status.svg)](https://david-dm.com/SettleAPI/settle-sdk-node) [![devDependencies Status](https://david-dm.com/SettleAPI/settle-sdk-node/dev-status.svg)](https://david-dm.com/SettleAPI/settle-sdk-node?type=dev) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.com/licenses/MIT)
+[![Build Status](https://travis-ci.com/SettleAPI/settle-sdk-node.svg?branch=master)](https://travis-ci.com/SettleAPI/settle-sdk-node) [![dependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node) [![devDependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/dev-status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node?type=dev) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 **Start accepting payments via Settle in seconds** ✨
 
