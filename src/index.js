@@ -22,11 +22,24 @@ try {
     optUser = config.user;
     optMerchant = config.merchantId;
     if (config.environment === 'sandbox') {
-      optAuthPriv = config.authentication.sandbox.priv;
-      optAuthPub = config.authentication.sandbox.pub;
+      if (config.authentication.sandbox.priv.length > 100 && config.authentication.sandbox.pub.length > 100) {
+        optAuthPriv = config.authentication.sandbox.priv;
+        optAuthPub = config.authentication.sandbox.pub;
+      } else {
+        throw new Error('Please check your config.js authentication.sandbox.priv/pub settings.');
+        process.exit(1);
+      }
+    } else if (config.environment === 'production') {
+      if (config.authentication.production.priv.length > 100 && config.authentication.production.pub.length > 100) {
+        optAuthPriv = config.authentication.production.priv;
+        optAuthPub = config.authentication.production.pub;
+      } else {
+        throw new Error('Please check your config.js authentication.production.priv/pub settings.');
+        process.exit(1);
+      }
     } else {
-      optAuthPriv = config.authentication.production.priv;
-      optAuthPub = config.authentication.production.pub;
+      throw new Error('config.js enviroment setting must be either "sandbox" or "production"');
+      process.exit(1);
     }
   } else {
     const configFile = require(demoConfig);
@@ -55,21 +68,18 @@ const request_promise = (method, url, request_body) => {
       .end((err, res) => {
         // (res.ok === true) ? resolve(settle.callback.success) : reject(settle.callback.failure);
         let response = {};
-        if (res.ok === true) {
+        if (res && res.ok && res.ok === true) {
           try {
             response.status = 'Success';
             response.status_code = res.res.statusCode;
             response.status_message = res.res.statusMessage;
             response.content = res.res.text;
-            // response.content = res.text;
-            // console.log(res)
-
             resolve(response);
             response = {};
           } catch (err) {
             console.error(err);
           }
-        } else if (res.ok !== true) {
+        } else if (res && res.ok && res.ok !== true) {
           try {
             response.status = 'Failure';
             response.status_code = res.statusCode;
@@ -85,11 +95,28 @@ const request_promise = (method, url, request_body) => {
               method: res.error.method,
               path: res.error.path
             };
-            // throw new Error("Something is wrong!");// No reject call
-            // console.log(res)
             reject(response);
             response = {};
-            return response;
+          } catch (err) {
+            console.error(err);
+          }
+        } else {
+          try {
+            response.status = 'Failure';
+            response.status_code = res.statusCode;
+            if (res.clientError) response.type = 'clientError';
+            if (res.serverError) response.type = 'serverError';
+            if (err) response.errorDetails.message = err;
+            if (res.res.statusMessage) response.statusMessage = res.res.statusMessage;
+
+            response.errorDetails = {
+              type: response.type,
+              description: res.text,
+              status: res.error.status,
+              method: res.error.method,
+              path: res.error.path
+            };
+            reject(response);
           } catch (err) {
             console.error(err);
           }
