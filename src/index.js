@@ -3,6 +3,10 @@ const path = require('path');
 const findUp = require('find-up');
 const SettleRequest = require('./client');
 
+const settle = {};
+settle.merchant = settle.merchant || {};
+exports.settle = settle;
+
 let userConfigFile;
 const demoConfig = './config/config.js';
 
@@ -103,10 +107,6 @@ const demoConfig = './config/config.js';
     return promise;
   };
 
-  const settle = {};
-  settle.merchant = settle.merchant || {};
-  exports.settle = settle;
-
   settle.merchant = {
     payment: {
       request: {
@@ -141,6 +141,6 @@ const demoConfig = './config/config.js';
       },
     }
   };
-
-  exports.merchant = settle.merchant;
 });
+
+exports.merchant = settle.merchant;
