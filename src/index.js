@@ -9,7 +9,7 @@ const demoConfig = './config/config.js';
 (async () => {
   userConfigFile = await findUp('config.js');
   console.log(userConfigFile);
-
+})().then(() => {
   let config;
   let optEnv;
   let optUser;
@@ -143,4 +143,4 @@ const demoConfig = './config/config.js';
   };
 
   exports.merchant = settle.merchant;
-})();
+});
