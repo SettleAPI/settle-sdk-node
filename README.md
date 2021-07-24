@@ -13,22 +13,22 @@ An easy to use SDK for Node.js with all the best practices to kickstart your int
 
 ## Functions
 
-- `merchant.api_keys` - https://settle.dev/api/reference/rest/v1/merchant.apiKeys/
-- `merchant.balance` - https://settle.dev/api/reference/rest/v1/merchant.balance/
-- `merchant.logo` - https://settle.dev/api/reference/rest/v1/merchant.logo/
-- `merchant.payment.request` - https://settle.dev/api/reference/rest/v1/merchant.payment.request/
-- `merchant.payment.request.outcome` - https://settle.dev/api/reference/rest/v1/merchant.payment.request.outcome/
-- `merchant.payment.send` - https://settle.dev/api/reference/rest/v1/merchant.payment.send/
-- `merchant.payment.send.outcome` - https://settle.dev/api/reference/rest/v1/merchant.payment.send.outcome/
-- `merchant.pos` - https://settle.dev/api/reference/rest/v1/merchant.pos/
-- `merchant.profile` - https://settle.dev/api/reference/rest/v1/merchant.profile/
-- `merchant.sales.summary` - https://settle.dev/api/reference/rest/v1/merchant.sales.summary/
-- `merchant.settlement` - https://settle.dev/api/reference/rest/v1/merchant.settlement/
-- `merchant.settlement.account` - https://settle.dev/api/reference/rest/v1/merchant.settlement.account/
-- `merchant.settlement.latest` - https://settle.dev/api/reference/rest/v1/merchant.settlement.latest/
-- `merchant.settlement.report` - https://settle.dev/api/reference/rest/v1/merchant.settlement.report/
-- `merchant.shortlink` - https://settle.dev/api/reference/rest/v1/merchant.shortlink/
-- `merchant.statusCodes` - https://settle.dev/api/reference/rest/v1/merchant.statusCodes/
+- [merchant.api_keys](https://settle.dev/api/reference/rest/v1/merchant.apiKeys/)
+- [merchant.balance](https://settle.dev/api/reference/rest/v1/merchant.balance/)
+- [merchant.logo](https://settle.dev/api/reference/rest/v1/merchant.logo/)
+- [merchant.payment.request](https://settle.dev/api/reference/rest/v1/merchant.payment.request/)
+- [merchant.payment.request.outcome](https://settle.dev/api/reference/rest/v1/merchant.payment.request.outcome/)
+- [merchant.payment.send](https://settle.dev/api/reference/rest/v1/merchant.payment.send/)
+- [merchant.payment.send.outcome](https://settle.dev/api/reference/rest/v1/merchant.payment.send.outcome/)
+- [merchant.pos](https://settle.dev/api/reference/rest/v1/merchant.pos/)
+- [merchant.profile](https://settle.dev/api/reference/rest/v1/merchant.profile/)
+- [merchant.sales.summary](https://settle.dev/api/reference/rest/v1/merchant.sales.summary/)
+- [merchant.settlement](https://settle.dev/api/reference/rest/v1/merchant.settlement/)
+- [merchant.settlement.account](https://settle.dev/api/reference/rest/v1/merchant.settlement.account/)
+- [merchant.settlement.latest](https://settle.dev/api/reference/rest/v1/merchant.settlement.latest/)
+- [merchant.settlement.report](https://settle.dev/api/reference/rest/v1/merchant.settlement.report/)
+- [merchant.shortlink](https://settle.dev/api/reference/rest/v1/merchant.shortlink/)
+- [merchant.statusCodes](https://settle.dev/api/reference/rest/v1/merchant.statusCodes/)
 
 ## Installation
 
@@ -36,7 +36,25 @@ An easy to use SDK for Node.js with all the best practices to kickstart your int
 
 ## Config
 
-TBD
+In your projects  **root folder**, create a file named `config.js` containing the following code:
+
+```js
+module.exports = {
+    environment: string, // 'sandbox' or 'production'
+    user: string, // can be obtained by contacting Settle
+    merchantId: string, // can be obtained by contacting Settle
+    authentication: {
+        sandbox: {
+            priv: string, // RSA Private Key
+            pub: string // RSA Public Key
+        },
+        production: {
+            priv: string, // RSA Private Key
+            pub: string // RSA Public Key
+        }
+    }
+}
+```
 
 ## Usage
 
