@@ -13,12 +13,8 @@ An easy to use **SDK** for **Node.js** with all the best practices to kickstart 
 
 ## Functions
 
-### Available Now
-
+### Merchant API - Available Now
 - [merchant.api_keys](https://settle.dev/api/reference/rest/v1/merchant.apiKeys/)
-  
-### Coming Soon
-
 - [merchant.balance](https://settle.dev/api/reference/rest/v1/merchant.balance/)
 - [merchant.logo](https://settle.dev/api/reference/rest/v1/merchant.logo/)
 - [merchant.payment.request](https://settle.dev/api/reference/rest/v1/merchant.payment.request/)
@@ -34,6 +30,22 @@ An easy to use **SDK** for **Node.js** with all the best practices to kickstart 
 - [merchant.settlement.report](https://settle.dev/api/reference/rest/v1/merchant.settlement.report/)
 - [merchant.shortlink](https://settle.dev/api/reference/rest/v1/merchant.shortlink/)
 - [merchant.statusCodes](https://settle.dev/api/reference/rest/v1/merchant.statusCodes/)
+
+### OAuth 2.0 Authorization Framework - Coming Soon
+
+- [oauth2.auth.code](https://settle.dev/api/reference/rest/v1/oauth2.auth.code/)
+- [oauth2.auth.request](https://settle.dev/api/reference/rest/v1/oauth2.auth.request/)
+- [oauth2.auth.token](https://settle.dev/api/reference/rest/v1/oauth2.auth.token/)
+- [oauth2.error](https://settle.dev/api/reference/rest/v1/oauth2.error/)
+- [oauth2.qrImage](https://settle.dev/api/reference/rest/v1/oauth2.qrImage/)
+- [oauth2.user.info](https://settle.dev/api/reference/rest/v1/oauth2.user.info/)
+
+### Permissions API - Coming Soon
+- [users.permissions](https://settle.dev/api/reference/rest/v1/users.permissions/)
+- [users.permissions.request](https://settle.dev/api/reference/rest/v1/users.permissions.request/)
+- [users.permissions.request.outcome](https://settle.dev/api/reference/rest/v1/users.permissions.request.outcome/)
+- [users.permissions.scope](https://settle.dev/api/reference/rest/v1/users.permissions.scope/)
+
 
 ## Installation
 
