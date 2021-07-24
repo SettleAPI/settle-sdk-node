@@ -5,7 +5,6 @@ const userConfigFile = `${process.cwd()}/config.js`;
 const demoConfig = './config/config.js';
 
 console.log(userConfigFile);
-
 let config;
 let optEnv;
 let optUser;
