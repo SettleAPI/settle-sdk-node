@@ -16,10 +16,20 @@ try {
     const configFile = require(userConfigFile);
     config = configFile;
     console.debug('using user config');
+    optEnv = config.environment;
+    optUser = config.user;
+    optMerchant = config.merchantId;
+    if (config.environment === 'sandbox') {
+      optAuthPriv = config.authentication.sandbox.priv;
+      optAuthPub = config.authentication.sandbox.pub;
+    } else {
+      optAuthPriv = config.authentication.production.priv;
+      optAuthPub = config.authentication.production.pub;
+    }
   } else {
     const configFile = require(demoConfig);
     config = configFile;
-    console.error('You are currently using the demo config file. Please create a "config.js" file in your project root. See https://github.com/SettleAPI/settle-sdk-node for more information');
+    console.warn('You are currently using the demo config file. Please create a "config.js" file in your project root. See https://github.com/SettleAPI/settle-sdk-node for more information');
     optEnv = config.environment;
     optUser = config.user;
     optMerchant = config.merchantId;
