@@ -41,7 +41,7 @@
         "Permissions API"
     ],
     "author": "Christian Wick <christian@settle.eu>",
-    "type": "Apache-2.0",
+    "type": "Apache 2",
     "url": "https://github.com/SettleAPI/settle-sdk-node/blob/master/LICENSE",
     "bugs": {
         "url": "https://github.com/SettleAPI/settle-sdk-node/issues"
