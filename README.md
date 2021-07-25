@@ -94,6 +94,9 @@ merchant.api_keys.list()
   });
 ```
 
-## License
+## Open Source and Contribution
 
-MIT © Christian Wick
+The **SDK** is **Open Source**, licensed under the **Apache 2** license. If you would like to **contribute** to the **SDK**, please feel free to **fork the repo and send us a pull request**. Or if you have a comment, question, or suggestion for improvements, please [raise an issue](https://github.com/SettleAPI/settle-sdk-node/issues).
+
+### License
+Apache 2 © Settle Group / Christian Wick
