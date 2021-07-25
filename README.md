@@ -89,7 +89,7 @@ merchant.api_keys.list()
   .then((success) => {
     console.log(success);
   }, (failure) => {
-    console.log(failure);
+    throw new Error(failure)
   });
 ```
 
