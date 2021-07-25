@@ -85,7 +85,6 @@ merchant.api_keys.list().then(success, failure)
 const settle = require('settle-sdk-node');
 const merchant = settle.merchant;
 
-// Available parameters: https://settle.dev/api/reference/rest/v1/merchant.apiKeys/list/
 merchant.api_keys.list()
   .then((success) => {
     console.log(success);
