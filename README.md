@@ -100,3 +100,4 @@ The **SDK** is **Open Source**, licensed under the **Apache 2** license. If you 
 
 ### License
 Apache 2 © Settle Group / Christian Wick
+
