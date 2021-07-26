@@ -15,12 +15,12 @@
         "build": "cross-env BABEL_ENV=production babel src --out-dir lib",
         "prepublish": "npm run clean && npm run test && npm run build",
         "publish:prerelease": "npm run clean && npm run test && git commit -am 'prerelease' && npm version prerelease -m 'Upgrade to %s' && git push && npm publish",
-        "publish:prepatch": "npm run clean && npm run test && git commit -am 'prepatch' && npm version prepatch -m 'Upgrade to %s' && git push && npm publish",
-        "publish:preminor": "npm run clean && npm run test && git commit -am 'preminor' && npm version preminor -m 'Upgrade to %s' && git push && npm publish",
-        "publish:premajor": "npm run clean && npm run test && git commit -am 'premajor' && npm version premajor -m 'Upgrade to %s' && git push && npm publish",
-        "publish:patch": "npm run clean && npm run test && git commit -am 'patch' && npm version patch -m 'Upgrade to %s' && git push && npm publish",
-        "publish:minor": "npm run clean && npm run test && git commit -am 'minor changes' && npm version minor -m 'Upgrade to %s' && git push && npm publish",
-        "publish:major": "npm run clean && npm run test && git commit -am 'major changes' && npm version major -m 'Upgrade to %s' && git push && npm publish"
+        "publish:prepatch": "npm run clean && npm run test && git commit -am 'prepatch' && npm version prepatch -m 'Upgrade to %s' && git push && npm publish && echo 'https://www.npmjs.com/package/settle-sdk-node'",
+        "publish:preminor": "npm run clean && npm run test && git commit -am 'preminor' && npm version preminor -m 'Upgrade to %s' && git push && npm publish && echo 'https://www.npmjs.com/package/settle-sdk-node'",
+        "publish:premajor": "npm run clean && npm run test && git commit -am 'premajor' && npm version premajor -m 'Upgrade to %s' && git push && npm publish && echo 'https://www.npmjs.com/package/settle-sdk-node'",
+        "publish:patch": "npm run clean && npm run test && git commit -am 'patch' && npm version patch -m 'Upgrade to %s' && git push && npm publish && echo 'https://www.npmjs.com/package/settle-sdk-node'",
+        "publish:minor": "npm run clean && npm run test && git commit -am 'minor changes' && npm version minor -m 'Upgrade to %s' && git push && npm publish && echo 'https://www.npmjs.com/package/settle-sdk-node'",
+        "publish:major": "npm run clean && npm run test && git commit -am 'major changes' && npm version major -m 'Upgrade to %s' && git push && npm publish && echo 'https://www.npmjs.com/package/settle-sdk-node'"
     },
     "files": [
         "lib",
