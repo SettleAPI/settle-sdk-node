@@ -42,7 +42,7 @@ try {
                 throw new Error('Please check your config.js authentication.production.priv/pub settings.');
             }
         } else {
-            throw new Error('config.js enviroment setting must be either "sandbox" or "production"');
+            throw new Error('config.js environment setting must be either "sandbox" or "production"');
         }
     } else {
         // eslint-disable-next-line global-require,import/no-dynamic-require
@@ -72,6 +72,30 @@ const requestPromise = (method, url, requestBody) => new Promise((resolve, rejec
     send.request(method, url, { payload: requestBody })
         .end((err, res) => {
             const response = {};
+            const failure = () => {
+                try {
+                    response.status = 'Failure';
+                    response.status_code = res.statusCode;
+                    if (res.clientError) response.type = 'clientError';
+                    if (res.serverError) response.type = 'serverError';
+                    if (err) response.errorDetails.message = err;
+                    if (res.res.statusMessage) response.statusMessage = res.res.statusMessage;
+
+                    response.errorDetails = {
+                        type: response.type,
+                        description: res.text,
+                        status: res.error.status,
+                        method: res.error.method,
+                        path: res.error.path,
+                    };
+                    reject(response);
+                    // eslint-disable-next-line no-shadow
+                } catch (err) {
+                    // eslint-disable-next-line no-console
+                    throw new Error(err);
+                }
+            };
+
             if (res && res.ok && res.ok === true) {
                 try {
                     response.status = 'Success';
@@ -81,53 +105,12 @@ const requestPromise = (method, url, requestBody) => new Promise((resolve, rejec
                     resolve(response);
                     // eslint-disable-next-line no-shadow
                 } catch (err) {
-                    // eslint-disable-next-line no-console
-                    console.error(err);
+                    throw new Error(err);
                 }
             } else if (res && res.ok && res.ok !== true) {
-                try {
-                    response.status = 'Failure';
-                    response.status_code = res.statusCode;
-                    if (res.clientError) response.type = 'clientError';
-                    if (res.serverError) response.type = 'serverError';
-                    if (err) response.errorDetails.message = err;
-                    if (res.res.statusMessage) response.statusMessage = res.res.statusMessage;
-
-                    response.errorDetails = {
-                        type: response.type,
-                        description: res.text,
-                        status: res.error.status,
-                        method: res.error.method,
-                        path: res.error.path,
-                    };
-                    reject(response);
-                    // eslint-disable-next-line no-shadow
-                } catch (err) {
-                    // eslint-disable-next-line no-console
-                    console.error(err);
-                }
+                failure();
             } else {
-                try {
-                    response.status = 'Failure';
-                    response.status_code = res.statusCode;
-                    if (res.clientError) response.type = 'clientError';
-                    if (res.serverError) response.type = 'serverError';
-                    if (err) response.errorDetails.message = err;
-                    if (res.res.statusMessage) response.statusMessage = res.res.statusMessage;
-
-                    response.errorDetails = {
-                        type: response.type,
-                        description: res.text,
-                        status: res.error.status,
-                        method: res.error.method,
-                        path: res.error.path,
-                    };
-                    reject(response);
-                    // eslint-disable-next-line no-shadow
-                } catch (err) {
-                    // eslint-disable-next-line no-console
-                    console.error(err);
-                }
+                failure();
             }
         });
 });
