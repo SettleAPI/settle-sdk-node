@@ -190,14 +190,18 @@ settle.merchant = settle.merchant || {
             }
         },
         refund: {
+            // create(tid, content) {
+            //     return requestPromise('PUT', `payment_request/${tid}/`, content)
+            //         .then((result) => result, (error) => error);
+            // },
             create(tid, content) {
-                return requestPromise('PUT', `payment_request/${tid}/`, content)
+                return requestPromise('PUT', `transactions/${tid}/refund`, content)
                     .then((result) => result, (error) => error);
             },
-            list(tid) {
-                return requestPromise('GET', `payment_request/${tid}/outcome/`)
-                    .then((result) => result, (error) => error);
-            },
+            // list(tid) {
+            //     return requestPromise('GET', `payment_request/${tid}/outcome/`)
+            //         .then((result) => result, (error) => error);
+            // },
         }
     },
     pos: {
