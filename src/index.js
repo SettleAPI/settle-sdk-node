@@ -201,7 +201,7 @@ settle.merchant = settle.merchant || {
         },
         refund(tid, cur, amo, adamo, message) {
             return requestPromise('PUT', `payment_request/${tid}/`, {
-                action: 'capture',
+                action: 'refund',
                 currency: cur,
                 amount: amo,
                 additional_amount: adamo,
