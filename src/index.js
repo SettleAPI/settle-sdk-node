@@ -189,20 +189,27 @@ settle.merchant = settle.merchant || {
                 },
             }
         },
-        refund: {
-            // create(tid, content) {
-            //     return requestPromise('PUT', `payment_request/${tid}/`, content)
-            //         .then((result) => result, (error) => error);
-            // },
-            create(tid, content) {
-                return requestPromise('PUT', `transactions/${tid}/refund`, content)
-                    .then((result) => result, (error) => error);
-            },
-            // list(tid) {
-            //     return requestPromise('GET', `payment_request/${tid}/outcome/`)
-            //         .then((result) => result, (error) => error);
-            // },
-        }
+        capture(tid, cur, amo, adamo) {
+            return requestPromise('PUT', `payment_request/${tid}/`, {
+                action: 'capture',
+                currency: cur,
+                amount: amo,
+                additional_amount: adamo,
+                capture_id: `cap_${tid}`,
+            })
+                .then((result) => result, (error) => error);
+        },
+        refund(tid, cur, amo, adamo, message) {
+            return requestPromise('PUT', `payment_request/${tid}/`, {
+                action: 'capture',
+                currency: cur,
+                amount: amo,
+                additional_amount: adamo,
+                refund_id: `cap_${tid}`,
+                text: message
+            })
+                .then((result) => result, (error) => error);
+        },
     },
     pos: {
         create(content) {
