@@ -265,8 +265,8 @@ settle.merchant = settle.merchant || {
                 return requestPromise('GET', `settlement_account/${settlementAccountId}/`)
                     .then((result) => result, (error) => error);
             },
-            update(settlementAccountId) {
-                return requestPromise('PUT', `settlement_account/${settlementAccountId}/`)
+            update(settlementAccountId, content) {
+                return requestPromise('PUT', `settlement_account/${settlementAccountId}/`, content)
                     .then((result) => result, (error) => error);
             },
         },
