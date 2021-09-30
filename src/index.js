@@ -132,11 +132,11 @@ settle.merchant = settle.merchant || {
                 .then((result) => result, (error) => error);
         },
         update(apiKeyId, content) {
-            return requestPromise('DELETE', `api_key/${apiKeyId}/`, content)
+            return requestPromise('PUT', `api_key/${apiKeyId}/`, content)
                 .then((result) => result, (error) => error);
         },
         delete(apiKeyId) {
-            return requestPromise('PUT', `api_key/${apiKeyId}/`)
+            return requestPromise('DELETE', `api_key/${apiKeyId}/`)
                 .then((result) => result, (error) => error);
         },
     },
@@ -265,8 +265,8 @@ settle.merchant = settle.merchant || {
                 return requestPromise('GET', `settlement_account/${settlementAccountId}/`)
                     .then((result) => result, (error) => error);
             },
-            update(settlementAccountId) {
-                return requestPromise('PUT', `settlement_account/${settlementAccountId}/`)
+            update(settlementAccountId, content) {
+                return requestPromise('PUT', `settlement_account/${settlementAccountId}/`, content)
                     .then((result) => result, (error) => error);
             },
         },
