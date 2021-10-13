@@ -2,6 +2,9 @@
 
 const fs = require('fs');
 const SettleRequest = require('./client');
+const { handler } = require('./client');
+
+exports.handler = handler;
 
 const userConfigFile = `${process.cwd()}/config.js`;
 const demoConfig = './config/config.js';

@@ -1,9 +1,71 @@
 const crypto = require('crypto');
 const fs = require('fs');
-const debug = require('debug')('mcash:handler');
+const debug = require('debug')('settle:handler');
 const { format } = require('util');
 // eslint-disable-next-line no-unused-vars
 const { EventEmitter } = require('events');
+
+const userConfigFile = `${process.cwd()}/config.js`;
+const demoConfig = './config/config.js';
+
+// eslint-disable-next-line no-console
+console.log(userConfigFile);
+
+let config;
+let optEnv;
+let optUser;
+let optMerchant;
+let optAuthPriv;
+let optAuthPub;
+let optVerif;
+
+try {
+    if (fs.existsSync(userConfigFile)) {
+        // eslint-disable-next-line global-require,import/no-dynamic-require
+        config = require(userConfigFile);
+        // eslint-disable-next-line no-console
+        console.info(`Hooray! You're using the config.js file from your project root; ${userConfigFile}`);
+        optEnv = config.environment;
+        optUser = config.user;
+        optMerchant = config.merchantId;
+        if (config.environment === 'sandbox') {
+            // eslint-disable-next-line max-len
+            if (config.authentication.sandbox.priv.length > 100 && config.authentication.sandbox.pub.length > 100) {
+                optAuthPriv = config.authentication.sandbox.priv;
+                optAuthPub = config.authentication.sandbox.pub;
+                optVerif = config.authentication.sandbox.verif;
+            } else {
+                throw new Error('Please check your config.js authentication.sandbox.priv/pub settings.');
+            }
+        } else if (config.environment === 'production') {
+            // eslint-disable-next-line max-len
+            if (config.authentication.production.priv.length > 100 && config.authentication.production.pub.length > 100) {
+                optAuthPriv = config.authentication.production.priv;
+                optAuthPub = config.authentication.production.pub;
+                optVerif = config.authentication.production.verif;
+            } else {
+                throw new Error('Please check your config.js authentication.production.priv/pub settings.');
+            }
+        } else {
+            throw new Error('config.js environment setting must be either "sandbox" or "production"');
+        }
+    } else {
+        // eslint-disable-next-line global-require,import/no-dynamic-require
+        config = require(demoConfig);
+        // eslint-disable-next-line no-console
+        console.warn('You are currently using the demo config file. Please create a "config.js" file in your project root. See https://github.com/SettleAPI/settle-sdk-node for more information');
+        optEnv = config.environment;
+        optUser = config.user;
+        optMerchant = config.merchantId;
+        optAuthPriv = config.authentication.demo.priv;
+        // eslint-disable-next-line no-unused-vars
+        optAuthPub = config.authentication.demo.pub;
+        optVerif = config.authentication.demo.verif;
+    }
+} catch (err) {
+    // eslint-disable-next-line no-console
+    console.error(err);
+}
 
 // eslint-disable-next-line no-multi-assign,func-names
 module.exports = exports = function (environment, callbackUri) {
@@ -13,29 +75,22 @@ module.exports = exports = function (environment, callbackUri) {
             type: 'application/vnd.mcash.api.merchant.v1+json',
             // eslint-disable-next-line no-unused-vars
             verify(req, res, buf, encoding) {
+                // eslint-disable-next-line no-console
+                // console.log('req is: ', req);
                 let err = exports.verifyDigest(req, buf.toString('utf8'));
                 if (err) throw new Error(`Digest verification failed: ${err}`);
 
-                err = exports.verifyAuthorization(req, exports.KEYS[environment], callbackUri);
+                err = exports.verifyAuthorization(req, optVerif, callbackUri);
                 if (err) throw new Error(`Authorization verification failed: ${err}`);
             },
         });
 };
-const keysFile = '../../../keys.json';
-try {
-    if (fs.existsSync(keysFile)) {
-        exports.KEYS = fs.readFileSync(keysFile, 'utf8');
-    }
-} catch (err) {
-    // eslint-disable-next-line no-console
-    console.error(err);
-}
-// exports.KEYS = require('../../../keys.json');
 
 // eslint-disable-next-line consistent-return,func-names
 exports.verifyDigest = function (req, text) {
-    const header = req.headers['x-mcash-content-digest'];
-    if (!header) return 'header missing';
+    // const header = req.headers['x-mcash-content-digest'];
+    const header = req.headers['x-settle-content-digest'];
+    if (!header) return 'header missing..';
 
     // Split "SHA256=abcdefg" by =
     const match = header.match(/^([^=]+)=(.+)$/);
@@ -51,6 +106,8 @@ exports.verifyDigest = function (req, text) {
     const actual = crypto.createHash('sha256')
         .update(text || '')
         .digest('base64');
+    // eslint-disable-next-line no-console
+    console.log('expected digest: %s\nactual digest: %s', expected, actual);
     debug('expected: %s\nactual: %s', expected, actual);
 
     if (actual !== expected) return 'mismatch';
@@ -71,19 +128,21 @@ exports.verifyAuthorization = function (req, key, callbackUri) {
     const expected = match[2];
 
     if (!callbackUri) {
-    // eslint-disable-next-line no-param-reassign
+        // eslint-disable-next-line no-param-reassign
         callbackUri = format('%s://%s%s', req.protocol, req.headers.host, req.originalUrl);
     }
 
-    // POST|http://server.test/some/resource/|X-MCASH-CONTENT-DIGEST=SHA256=oWVxV3hh...
+    // POST|http://server.test/some/resource/|X-Settle-CONTENT-DIGEST=SHA256=oWVxV3hhr8+LfVEYkv57XxW2R1wdhLsrfu3REAzmS7k=&X-Settle-MERCHANT=T9oWAQ3FSl6oeITuR2ZGWA&X-Settle-TIMESTAMP=2013-10-05 21:33:46
+    // eslint-disable-next-line no-console
+    // console.log('header key ', Object.keys(req.headers));
     const concat = format('%s|%s|%s',
         req.method,
         callbackUri,
         Object.keys(req.headers)
-        // eslint-disable-next-line no-shadow
-            .filter((key) => !!key.match(/^x-mcash-/))
+            // eslint-disable-next-line no-shadow
+            .filter((key) => !!key.match(/^x-settle-/))
             .sort()
-        // eslint-disable-next-line no-shadow
+            // eslint-disable-next-line no-shadow
             .reduce((p, key) => format('%s%s%s=%s',
                 p,
                 p.length ? '&' : '',
@@ -91,9 +150,14 @@ exports.verifyAuthorization = function (req, key, callbackUri) {
                 req.headers[key]), ''));
 
     debug('concat:\n%s', concat);
-
     debug('key:\n%s', key);
     debug('expected: %s', expected);
+
+    // eslint-disable-next-line no-console
+    console.log('concat:\n%s', concat);
+
+    // eslint-disable-next-line no-console
+    console.log('expected auth: %s', expected);
 
     const verifier = crypto.createVerify('RSA-SHA256');
     verifier.update(concat);

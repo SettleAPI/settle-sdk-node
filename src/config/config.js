@@ -4,8 +4,31 @@ module.exports = {
     merchantId: 'fzkmhy0q',
     authentication: {
         demo: {
-            priv: '-----BEGIN RSA PRIVATE KEY-----\nMIICXAIBAAKBgQCbOqFG0CQiFPFoYuWqXyteHDxzow0iSSTk0x/ITTwAWVVbugWhem+HFTNP\nGVVmjyV9tloSnHcGUPkjGNjh50fC7JN3doa5eR7dEr0KGPu3XgeP7IK1/mVpxjBZEINTa1f0\n0khgc6wzoYIGMvXen4PCIcBO0TmCwTyxM0+oRbNRzwIDAQABAoGAfut8TFsJADjhfblHEXuJ\nCQTLRL1vkrX9jX82QF8uDRb93OcHjZV/NRLXhfgvxJCMVfJQSWFXTHnOiqzZQDQLjoXxeTHR\nP4+w1WhyJTeDgFoULugI2giwOLw6ExB3WUTumlYP6wyfWiH+ZmG9OcfUfU2BgNNqRO0GkHiW\nYTUZC7kCQQDQh8uBX9QfnX+kvN3u2s1oUMuX/RNwlG2dDoGdIAEBgD9YP+vQLLaTsSNC4oGP\n91F3XJkluBKL8Mbg91adRS1rAkEAvpCrsE6CPdjEnxTk2mToRUZvRXNGXtCDySYzuE47EI6t\n7g6fbrqk5XQWXc+XwtXvlCf4gwB7zAD7uuBfUu6CLQJAJGGsxbOcZK+r12gEKGoQMET4YFoN\nDDU5Mo+XWXx98G8ZniH42GcUq4vaJQ8zn5R8qCCFr6j/w16MtC8y81lgZQJBAI4rJjthRt9X\nIdFA6D9aesJ7+rWIe55u13KwsnM0wfHnUDFC7YTRcAXS5oDUR/dOXe9dJpStPq6CqUrQ66zW\nTX0CQDARMbH2h498sEo5VsDASGZwy4YWuHTP8f0JnLKRXRtZ9LNADedHOEndiN2ak6Tt4Kr+\nguwEj2euvbP4Fi52QJA=\n-----END RSA PRIVATE KEY-----',
-            pub: '-----BEGIN PUBLIC KEY-----\nMIGJAoGBAJs6oUbQJCIU8Whi5apfK14cPHOjDSJJJOTTH8hNPABZVVu6BaF6b4cVM08ZVWaP\nJX22WhKcdwZQ+SMY2OHnR8Lsk3d2hrl5Ht0SvQoY+7deB4/sgrX+ZWnGMFkQg1NrV/TSSGBz\nrDOhggYy9d6fg8IhwE7ROYLBPLEzT6hFs1HPAgMBAAE=\n-----END PUBLIC KEY-----'
-        }
-    }
+            priv: '-----BEGIN RSA PRIVATE KEY-----\n'
+                + 'MIICXAIBAAKBgQCGN1gm49aoE7e2pweeeddJsLBEJOg65mChWlzKF6BrKA/vC7hpWYbjw/Ij\n'
+                + 'pCqTX/20MfL6SsW4PkL6boQK0txA0jAJzXgyTpe2U2dEumEQtAbS/+OJT55IqNfV6CBwfSI+\n'
+                + 'biK49b9OkEchXiOoSGCdeDtPIbyLz7HX7IAXDmqL3wIDAQABAoGABeI9Og845MtgfWBbJCZh\n'
+                + 'OrjFMWeQyqw4xjoI4U8h2DC8ahVQc0XadPetEMTsnONTYufhp/lJK6eHFiVsInFV+Gx2kJ4r\n'
+                + '+63gLbz1IhWkTy/zSuDRGI6iDk60OBlX29nyLBsmnA1V+eYf9DvFKkZKqJ21xDa8iBrDR+bj\n'
+                + 'YOH3R7kCQQD8TyW7Wjo/wHfoT8xY1wYaY1KoicoqU5UJVQs347Wb7JOgXGTcIjPf/xZ7Mvi5\n'
+                + 'lgB9KOrc3X+eW4D99bukvJxtAkEAiC31vLNSsNjh01tGl1LmfUKosj2OVwwQ2UseTvAU+5Uv\n'
+                + 'Ae0/4MMK0Z610LomNJ9nwH7W/fdMaVmqljZDDmvB+wJBAJWXN3/FFxQFQRJzfWyO0AeFK9TR\n'
+                + 'HRPLSmmmCmiwkVRJB53kKch6XtdHnkSdC+q8jL2oLNeWW7u/9NKdhws86GECQGk6qpMgNpu1\n'
+                + 'W/uIoqm4Q6czZUwmSOF2z2Y5p7fzySMHCoYAoMW7sZZ9f51E2tT7AJ885EDnYcJeqXTdhT+V\n'
+                + 'gRUCQBQHL5Bh2Jnvk/K4RU1SpbgmNY9RnT5oOx4zBfM4tG+md2xUFvnv+/kOMkAYQ6z9IDrf\n'
+                + 'mhweJ2d5PNRhk3zm7E4=\n'
+                + '-----END RSA PRIVATE KEY-----\n',
+            pub: '-----BEGIN RSA PUBLIC KEY-----\n'
+                + 'MIGJAoGBAIY3WCbj1qgTt7anB55510mwsEQk6DrmYKFaXMoXoGsoD+8LuGlZhuPD8iOkKpNf\n'
+                + '/bQx8vpKxbg+QvpuhArS3EDSMAnNeDJOl7ZTZ0S6YRC0BtL/44lPnkio19XoIHB9Ij5uIrj1\n'
+                + 'v06QRyFeI6hIYJ14O08hvIvPsdfsgBcOaovfAgMBAAE=\n'
+                + '-----END RSA PUBLIC KEY-----\n',
+            verif: '-----BEGIN PUBLIC KEY-----\n'
+                + 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDS92fCQmAPDpmcgraqPRXgz4Nd\n'
+                + 'd/biPxIH5aG1dAQ8dMMcEjGCn7Sm5VcX1iV8L5oW+MlcnHFaZdVyy1Lcqed/8+r0\n'
+                + 'QM9cFqQWif35C+eOr/s7/CCY/WXMApqO6YihtHvP+jgjrXltw0LHrUwMWO718udN\n'
+                + 'hlg22QkpjhG90kvf3QIDAQAB\n'
+                + '-----END PUBLIC KEY-----'
+        },
+    },
 };
