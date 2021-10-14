@@ -8,10 +8,12 @@ An easy to use **SDK** for **Node.js** with all the best practices to kickstart 
 
 ## Features
 
-* **Requests** - Simplifies calling the Settle APIs by handling signing and authorization.
-* ~~**Verifications** - _Express.js_ compatible middleware that verifies signatures of incoming callbacks.~~
+This SDK is divided into two parts:
 
-## Functions
+* **Client** - Simplifies calling the Settle APIs by handling signing and authorization.
+* **Handler** - [Express.js](https://expressjs.com/) compatible middleware that verifies signatures of incoming callbacks from Settle.
+
+## Client Functions
 
 ### Merchant API - Available Now
 - [merchant.api_keys](https://settle.dev/api/reference/rest/v1/merchant.apiKeys/)
@@ -79,7 +81,7 @@ module.exports = {
 merchant.api_keys.list().then(success, failure)
 ```
 
-## Example
+## Client Example
 
 ```js
 const settle = require('settle-sdk-node');
@@ -91,6 +93,17 @@ merchant.api_keys.list()
   }, (failure) => {
     throw new Error(failure)
   });
+```
+
+## Handler Example
+
+```js
+const { handler } = require('settle-sdk-node')
+app.use(handler('sandbox'))
+app.post( '/', ( req, res, next ) => {
+    console.log( 'Settle says:\n%s', req.body );
+    res.sendStatus( 200 );
+});
 ```
 
 ## Open Source and Contribution
