@@ -37,7 +37,8 @@
         "SDK",
         "Merchant API",
         "OAuth 2.0 Authorization Framework",
-        "Permissions API"
+        "Permissions API",
+        "Express.js Middleare"
     ],
     "author": "Christian Wick <christian@settle.eu>",
     "type": "Apache 2",
