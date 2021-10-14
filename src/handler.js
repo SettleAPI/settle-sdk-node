@@ -12,11 +12,6 @@ const demoConfig = './config/config.js';
 console.log(userConfigFile);
 
 let config;
-let optEnv;
-let optUser;
-let optMerchant;
-let optAuthPriv;
-let optAuthPub;
 let optVerif;
 
 try {
@@ -25,14 +20,9 @@ try {
         config = require(userConfigFile);
         // eslint-disable-next-line no-console
         console.info(`Hooray! You're using the config.js file from your project root; ${userConfigFile}`);
-        optEnv = config.environment;
-        optUser = config.user;
-        optMerchant = config.merchantId;
         if (config.environment === 'sandbox') {
             // eslint-disable-next-line max-len
             if (config.authentication.sandbox.priv.length > 100 && config.authentication.sandbox.pub.length > 100) {
-                optAuthPriv = config.authentication.sandbox.priv;
-                optAuthPub = config.authentication.sandbox.pub;
                 optVerif = config.authentication.sandbox.verif;
             } else {
                 throw new Error('Please check your config.js authentication.sandbox.priv/pub settings.');
@@ -40,8 +30,6 @@ try {
         } else if (config.environment === 'production') {
             // eslint-disable-next-line max-len
             if (config.authentication.production.priv.length > 100 && config.authentication.production.pub.length > 100) {
-                optAuthPriv = config.authentication.production.priv;
-                optAuthPub = config.authentication.production.pub;
                 optVerif = config.authentication.production.verif;
             } else {
                 throw new Error('Please check your config.js authentication.production.priv/pub settings.');
@@ -54,12 +42,6 @@ try {
         config = require(demoConfig);
         // eslint-disable-next-line no-console
         console.warn('You are currently using the demo config file. Please create a "config.js" file in your project root. See https://github.com/SettleAPI/settle-sdk-node for more information');
-        optEnv = config.environment;
-        optUser = config.user;
-        optMerchant = config.merchantId;
-        optAuthPriv = config.authentication.demo.priv;
-        // eslint-disable-next-line no-unused-vars
-        optAuthPub = config.authentication.demo.pub;
         optVerif = config.authentication.demo.verif;
     }
 } catch (err) {
@@ -81,7 +63,12 @@ module.exports = exports = function (environment, callbackUri) {
                 if (err) throw new Error(`Digest verification failed: ${err}`);
 
                 err = exports.verifyAuthorization(req, optVerif, callbackUri);
+                // eslint-disable-next-line no-console
+                // console.log('callbackUri is ', callbackUri);
                 if (err) throw new Error(`Authorization verification failed: ${err}`);
+
+                // eslint-disable-next-line no-console
+                if (!err) console.log('Authorization verification: OK');
             },
         });
 };
@@ -129,12 +116,15 @@ exports.verifyAuthorization = function (req, key, callbackUri) {
 
     if (!callbackUri) {
         // eslint-disable-next-line no-param-reassign
-        callbackUri = format('%s://%s%s', req.protocol, req.headers.host, req.originalUrl);
+        // callbackUri = format('%s://%s%s', req.protocol, req.headers.host, req.originalUrl);
+        // eslint-disable-next-line no-param-reassign
+        callbackUri = format('%s://%s%s', req.headers['x-forwarded-proto'], req.headers.host, req.originalUrl);
+        // eslint-disable-next-line no-console
+        // console.log('callbackUri is ', callbackUri);
+        // console.log('req is ', req);
     }
 
     // POST|http://server.test/some/resource/|X-Settle-CONTENT-DIGEST=SHA256=oWVxV3hhr8+LfVEYkv57XxW2R1wdhLsrfu3REAzmS7k=&X-Settle-MERCHANT=T9oWAQ3FSl6oeITuR2ZGWA&X-Settle-TIMESTAMP=2013-10-05 21:33:46
-    // eslint-disable-next-line no-console
-    // console.log('header key ', Object.keys(req.headers));
     const concat = format('%s|%s|%s',
         req.method,
         callbackUri,
