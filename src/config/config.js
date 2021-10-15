@@ -1,6 +1,6 @@
 module.exports = {
     environment: 'sandbox',
-    user: 't1m7fw50',
+    user: 'a2bwk5vg',
     merchantId: 'fzkmhy0q',
     authentication: {
         demo: {
