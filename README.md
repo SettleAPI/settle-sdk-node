@@ -1,6 +1,7 @@
 # Node.js SDK for connecting to the Settle Payment Platform
 
-[![Build Status](https://travis-ci.com/SettleAPI/settle-sdk-node.svg?branch=master)](https://travis-ci.com/SettleAPI/settle-sdk-node) [![dependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node) [![devDependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/dev-status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node?type=dev) [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![License](https://img.shields.io/badge/license-Apache%202-brightgreen.svg)](https://github.com/daniel-zahariev/music-codes/blob/master/COPYING)
+[![Build Status](https://travis-ci.com/SettleAPI/settle-sdk-node.svg?branch=master)](https://travis-ci.com/SettleAPI/settle-sdk-node) [![dependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node) [![devDependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/dev-status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node?type=dev)
 
 **Start accepting payments via Settle in seconds** ✨
 
