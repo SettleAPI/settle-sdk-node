@@ -375,3 +375,5 @@ settle.permission = settle.permission || {
 exports.merchant = settle.merchant;
 exports.oauth = settle.oauth;
 exports.permission = settle.permission;
+
+// note
