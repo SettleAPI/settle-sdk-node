@@ -1,6 +1,6 @@
 {
     "name": "settle-sdk-node",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "An easy to use SDK for Node.js with all the best practices to kickstart your integration with the Settle Payment Platform.",
     "main": "./src/index.js",
     "scripts": {
