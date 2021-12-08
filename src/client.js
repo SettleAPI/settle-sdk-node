@@ -18,6 +18,7 @@ const Settle = module.exports = exports = function (opts) {
 exports.ENDPOINTS = {
     production: 'https://api.settle.eu/merchant/v1/',
     sandbox: 'https://api.sandbox.settle.eu/merchant/v1/',
+    qa: 'https://api-dot-settle-core-qa.appspot.com/merchant/v1/',
 };
 
 function settleTimestamp() {

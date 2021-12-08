@@ -26,26 +26,38 @@ try {
         // eslint-disable-next-line no-console
         console.info(`Hooray! You're using the config.js file from your project root; ${userConfigFile}`);
         optEnv = config.environment;
+        // eslint-disable-next-line no-console
+        console.log('Environment is: ', optEnv);
         optUser = config.user;
         optMerchant = config.merchantId;
-        if (config.environment === 'sandbox') {
-            // eslint-disable-next-line max-len
-            if (config.authentication.sandbox.priv.length > 100 && config.authentication.sandbox.pub.length > 100) {
-                optAuthPriv = config.authentication.sandbox.priv;
-                optAuthPub = config.authentication.sandbox.pub;
-            } else {
-                throw new Error('Please check your config.js authentication.sandbox.priv/pub settings.');
+        if (optEnv === 'sandbox' || optEnv === 'production') {
+            if (optEnv === 'sandbox') {
+                // eslint-disable-next-line max-len
+                if (config.authentication.sandbox.priv.length > 100 && config.authentication.sandbox.pub.length > 100) {
+                    optAuthPriv = config.authentication.sandbox.priv;
+                    optAuthPub = config.authentication.sandbox.pub;
+                } else {
+                    throw new Error('Please check your config.js authentication.sandbox.priv/pub settings.');
+                }
+            } else if (optEnv === 'production') {
+                // eslint-disable-next-line max-len
+                if (config.authentication.production.priv.length > 100 && config.authentication.production.pub.length > 100) {
+                    optAuthPriv = config.authentication.production.priv;
+                    optAuthPub = config.authentication.production.pub;
+                } else {
+                    throw new Error('Please check your config.js authentication.production.priv/pub settings.');
+                }
             }
-        } else if (config.environment === 'production') {
+        } else if (optEnv === 'qa') {
             // eslint-disable-next-line max-len
-            if (config.authentication.production.priv.length > 100 && config.authentication.production.pub.length > 100) {
-                optAuthPriv = config.authentication.production.priv;
-                optAuthPub = config.authentication.production.pub;
+            if (config.authentication.qa.priv.length > 100 && config.authentication.qa.pub.length > 100) {
+                optAuthPriv = config.authentication.qa.priv;
+                optAuthPub = config.authentication.qa.pub;
             } else {
-                throw new Error('Please check your config.js authentication.production.priv/pub settings.');
+                throw new Error('Please check your config.js authentication.qa.priv/pub settings.');
             }
         } else {
-            throw new Error('config.js environment setting must be either "sandbox" or "production"');
+            throw new Error(`Your config.js environment is currently set to '${optEnv}'. Valid options are 'sandbox' or 'production'.`);
         }
     } else {
         // eslint-disable-next-line global-require,import/no-dynamic-require
@@ -58,6 +70,9 @@ try {
         optAuthPriv = config.authentication.demo.priv;
         // eslint-disable-next-line no-unused-vars
         optAuthPub = config.authentication.demo.pub;
+
+        // eslint-disable-next-line no-console
+        console.log('priv key: ', optAuthPriv);
     }
 } catch (err) {
     // eslint-disable-next-line no-console
@@ -178,7 +193,7 @@ settle.merchant = settle.merchant || {
                     return requestPromise('GET', `payment_request/${tid}/outcome/`)
                         .then((result) => result, (error) => error);
                 },
-            }
+            },
         },
         send: {
             create(content) {
@@ -190,7 +205,7 @@ settle.merchant = settle.merchant || {
                     return requestPromise('GET', `payment/${tid}/`)
                         .then((result) => result, (error) => error);
                 },
-            }
+            },
         },
         capture(tid, cur, amo, adamo) {
             return requestPromise('PUT', `payment_request/${tid}/`, {
@@ -209,7 +224,7 @@ settle.merchant = settle.merchant || {
                 amount: amo,
                 additional_amount: adamo,
                 refund_id: `cap_${tid}`,
-                text: message
+                text: message,
             })
                 .then((result) => result, (error) => error);
         },
@@ -252,7 +267,7 @@ settle.merchant = settle.merchant || {
                 return requestPromise('GET', 'sales_summary/')
                     .then((result) => result, (error) => error);
             },
-        }
+        },
     },
     settlement: {
         list() {
@@ -284,7 +299,7 @@ settle.merchant = settle.merchant || {
                 return requestPromise('GET', 'settlement_report/')
                     .then((result) => result, (error) => error);
             },
-        }
+        },
     },
     shortlink: {
         create(content) {
@@ -317,7 +332,7 @@ settle.merchant = settle.merchant || {
             return requestPromise('GET', `status_code/${statusCodeId}/`)
                 .then((result) => result, (error) => error);
         },
-    }
+    },
 };
 
 settle.oauth = settle.oauth || {
@@ -329,21 +344,34 @@ settle.oauth = settle.oauth || {
     error: {},
     qrImage: {},
     user: {
-        info: {}
-    }
+        info: {},
+    },
 };
 
-settle.permissions = settle.permissions || {
-    users: {
-        permissions: {
-            request: {
-                outcome: {}
-            },
-            scope: {}
-        }
-    }
+// settle.permissions = settle.permissions || {
+//     users: {
+//         permissions: {
+//             request: {
+//                 outcome: {}
+//             },
+//             scope: {}
+//         }
+//     }
+// };
+
+settle.permission = settle.permission || {
+    request: {
+        create(content) {
+            return requestPromise('POST', 'permission_request/', content)
+                .then((result) => result, (error) => error);
+        },
+        get(rid) {
+            return requestPromise('GET', `permission_request/${rid}/`)
+                .then((result) => result, (error) => error);
+        },
+    },
 };
 
 exports.merchant = settle.merchant;
 exports.oauth = settle.oauth;
-exports.permissions = settle.permissions;
+exports.permission = settle.permission;
