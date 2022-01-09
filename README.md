@@ -1,6 +1,6 @@
 # Node.js SDK for connecting to the Settle Payment Platform
 
-[![License](https://img.shields.io/badge/license-Apache%202-brightgreen.svg)](https://github.com/daniel-zahariev/music-codes/blob/master/COPYING)
+[![License](https://img.shields.io/badge/license-Apache%202-brightgreen.svg)](https://github.com/SettleAPI/settle-sdk-node/blob/master/LICENSE)
 [![Build Status](https://travis-ci.com/SettleAPI/settle-sdk-node.svg?branch=master)](https://travis-ci.com/SettleAPI/settle-sdk-node) [![dependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node) [![devDependencies Status](https://david-dm.org/SettleAPI/settle-sdk-node/dev-status.svg)](https://david-dm.org/SettleAPI/settle-sdk-node?type=dev)
 
 **Start accepting payments via Settle in seconds** ✨
