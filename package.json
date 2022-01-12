@@ -41,7 +41,7 @@
         "Express.js Middleare"
     ],
     "author": "Christian Wick <christian@settle.eu>",
-    "type": "Apache 2",
+    "type": "module",
     "url": "https://github.com/SettleAPI/settle-sdk-node/blob/master/LICENSE",
     "bugs": {
         "url": "https://github.com/SettleAPI/settle-sdk-node/issues"
