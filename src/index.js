@@ -207,26 +207,43 @@ settle.merchant = settle.merchant || {
                 },
             },
         },
-        capture(tid, cur, amo, adamo) {
-            return requestPromise('PUT', `payment_request/${tid}/`, {
-                action: 'capture',
-                currency: cur,
-                amount: amo,
-                additional_amount: adamo,
-                capture_id: `cap_${tid}`,
-            })
-                .then((result) => result, (error) => error);
+        refund: {
+            full(tid, message) {
+                return requestPromise('PUT', `payment_request/${tid}/`, {
+                    action: 'refund',
+                    text: message,
+                })
+                    .then((result) => result, (error) => error);
+            },
+            partial(tid, cur, amo, adamo, message) {
+                return requestPromise('PUT', `payment_request/${tid}/`, {
+                    action: 'refund',
+                    currency: cur,
+                    amount: amo,
+                    additional_amount: adamo,
+                    refund_id: `cap_${tid}`,
+                    text: message,
+                })
+                    .then((result) => result, (error) => error);
+            },
         },
-        refund(tid, cur, amo, adamo, message) {
-            return requestPromise('PUT', `payment_request/${tid}/`, {
-                action: 'refund',
-                currency: cur,
-                amount: amo,
-                additional_amount: adamo,
-                refund_id: `cap_${tid}`,
-                text: message,
-            })
-                .then((result) => result, (error) => error);
+        capture: {
+            full(tid) {
+                return requestPromise('PUT', `payment_request/${tid}/`, {
+                    action: 'capture',
+                })
+                    .then((result) => result, (error) => error);
+            },
+            partial(tid, cur, amo, adamo) {
+                return requestPromise('PUT', `payment_request/${tid}/`, {
+                    action: 'capture',
+                    currency: cur,
+                    amount: amo,
+                    additional_amount: adamo,
+                    capture_id: `cap_${tid}`,
+                })
+                    .then((result) => result, (error) => error);
+            },
         },
     },
     pos: {
@@ -333,20 +350,38 @@ settle.merchant = settle.merchant || {
                 .then((result) => result, (error) => error);
         },
     },
+    permissions: {
+        request: {
+            create(content) {
+                return requestPromise('POST', 'permission_request/', content)
+                    .then((result) => result, (error) => error);
+            },
+            get(rid) {
+                return requestPromise('GET', `permission_request/${rid}/`)
+                    .then((result) => result, (error) => error);
+            },
+            outcome: {
+                get(rid) {
+                    return requestPromise('GET', `permission_request/${rid}/outcome/`)
+                        .then((result) => result, (error) => error);
+                },
+            },
+        },
+    },
 };
 
-settle.oauth = settle.oauth || {
-    auth: {
-        code: {},
-        request: {},
-        token: {},
-    },
-    error: {},
-    qrImage: {},
-    user: {
-        info: {},
-    },
-};
+// settle.oauth = settle.oauth || {
+//     auth: {
+//         code: {},
+//         request: {},
+//         token: {},
+//     },
+//     error: {},
+//     qrImage: {},
+//     user: {
+//         info: {},
+//     },
+// };
 
 // settle.permissions = settle.permissions || {
 //     users: {
@@ -359,21 +394,21 @@ settle.oauth = settle.oauth || {
 //     }
 // };
 
-settle.permission = settle.permission || {
-    request: {
-        create(content) {
-            return requestPromise('POST', 'permission_request/', content)
-                .then((result) => result, (error) => error);
-        },
-        get(rid) {
-            return requestPromise('GET', `permission_request/${rid}/`)
-                .then((result) => result, (error) => error);
-        },
-    },
-};
+// settle.permission = settle.permission || {
+//     request: {
+//         create(content) {
+//             return requestPromise('POST', 'permission_request/', content)
+//                 .then((result) => result, (error) => error);
+//         },
+//         get(rid) {
+//             return requestPromise('GET', `permission_request/${rid}/`)
+//                 .then((result) => result, (error) => error);
+//         },
+//     },
+// };
 
 exports.merchant = settle.merchant;
-exports.oauth = settle.oauth;
-exports.permission = settle.permission;
+// exports.oauth = settle.oauth;
+// exports.permission = settle.permission;
 
 // note
