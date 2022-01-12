@@ -370,45 +370,4 @@ settle.merchant = settle.merchant || {
     },
 };
 
-// settle.oauth = settle.oauth || {
-//     auth: {
-//         code: {},
-//         request: {},
-//         token: {},
-//     },
-//     error: {},
-//     qrImage: {},
-//     user: {
-//         info: {},
-//     },
-// };
-
-// settle.permissions = settle.permissions || {
-//     users: {
-//         permissions: {
-//             request: {
-//                 outcome: {}
-//             },
-//             scope: {}
-//         }
-//     }
-// };
-
-// settle.permission = settle.permission || {
-//     request: {
-//         create(content) {
-//             return requestPromise('POST', 'permission_request/', content)
-//                 .then((result) => result, (error) => error);
-//         },
-//         get(rid) {
-//             return requestPromise('GET', `permission_request/${rid}/`)
-//                 .then((result) => result, (error) => error);
-//         },
-//     },
-// };
-
 exports.merchant = settle.merchant;
-// exports.oauth = settle.oauth;
-// exports.permission = settle.permission;
-
-// note
