@@ -333,8 +333,10 @@ settle.merchant = settle.merchant || {
             return requestPromise('GET', `shortlink/${shortLinkId}/`)
                 .then((result) => result, (error) => error);
         },
-        update(shortLinkId, content) {
-            return requestPromise('PUT', `shortlink/${shortLinkId}/`, content)
+        update(shortLinkId, callbackUri) {
+            return requestPromise('PUT', `shortlink/${shortLinkId}/`, {
+                callback_uri: callbackUri,
+            })
                 .then((result) => result, (error) => error);
         },
         delete(shortLinkId) {
