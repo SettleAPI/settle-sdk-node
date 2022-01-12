@@ -75,7 +75,7 @@ merchant.api_keys.list()
   });
 ```
 
-> For a full overview of all available **Client Functions**, see our article on [how to use Client Functions in the Settle SDK for Node.js](./ZG9jOjM0ODQwMjA4-using-the-client-functions).
+> For a full overview of all available **Client Functions**, see our article on [how to use Client Functions in the Settle SDK for Node.js](https://settleapi.stoplight.io/docs/settleapis/ZG9jOjM0ODQwMjA4-client-functions).
 
 
 <!-- ### OAuth 2.0 Authorization Framework - Coming Soon
