@@ -319,24 +319,26 @@ settle.merchant = settle.merchant || {
         },
     },
     shortlink: {
-        create(content) {
-            return requestPromise('POST', 'shortlink/', content)
+        create(callbackUri) {
+            return requestPromise('PUT', 'shortlink/$', {
+                callback_uri: callbackUri,
+            })
                 .then((result) => result, (error) => error);
         },
         list() {
             return requestPromise('GET', 'shortlink/')
                 .then((result) => result, (error) => error);
         },
-        get(shortlinkId) {
-            return requestPromise('GET', `shortlink/${shortlinkId}/`)
+        get(shortLinkId) {
+            return requestPromise('GET', `shortlink/${shortLinkId}/`)
                 .then((result) => result, (error) => error);
         },
-        update(shortlinkId, content) {
-            return requestPromise('PUT', `shortlink/${shortlinkId}/`, content)
+        update(shortLinkId, content) {
+            return requestPromise('PUT', `shortlink/${shortLinkId}/`, content)
                 .then((result) => result, (error) => error);
         },
-        delete(shortlinkId) {
-            return requestPromise('DELETE', `shortlink/${shortlinkId}/`)
+        delete(shortLinkId) {
+            return requestPromise('DELETE', `shortlink/${shortLinkId}/`)
                 .then((result) => result, (error) => error);
         },
     },
