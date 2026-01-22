@@ -68,7 +68,7 @@
     "dependencies": {
         "body-parser": "^1.19.0",
         "debug": "4.3.2",
-        "lodash": "4.17.21",
+        "lodash": "4.17.23",
         "superagent": "0.18.0"
     }
 }
